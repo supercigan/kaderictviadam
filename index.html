@@ -151,17 +151,6 @@
       gap: 0.7rem;
       text-decoration: none;
     }
-    .nav-logo-icon {
-      width: 40px;
-      height: 40px;
-      background: var(--accent);
-      border-radius: 2px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-    .nav-logo-icon svg { width: 22px; height: 22px; }
     .nav-logo-text {
       font-family: 'Abril Fatface', serif;
       font-size: 1.65rem;
@@ -274,35 +263,6 @@
       white-space: nowrap;
     }
 
-    /* Animated barber pole */
-    .barber-pole {
-      position: absolute;
-      right: 7%;
-      top: 15%;
-      width: 5px;
-      height: 65vh;
-      border-radius: 3px;
-      overflow: hidden;
-      opacity: 0.22;
-    }
-    .barber-pole-track {
-      width: 100%;
-      height: 200%;
-      background: repeating-linear-gradient(
-        0deg,
-        var(--accent)  0px,
-        var(--accent)  26px,
-        #fff           26px,
-        #fff           52px,
-        var(--tan)     52px,
-        var(--tan)     78px
-      );
-      animation: poleScroll 3.5s linear infinite;
-    }
-    @keyframes poleScroll {
-      from { transform: translateY(0); }
-      to   { transform: translateY(50%); }
-    }
 
     /* Thin diagonal rule decoration */
     .hero-rule-decor {
@@ -938,16 +898,6 @@
   <!-- ================= NAV ================= -->
   <nav id="nav" role="navigation" aria-label="Hlavní navigace">
     <a href="#hero" class="nav-logo" aria-label="Pánské kadeřnictví Adam – domů">
-      <div class="nav-logo-icon" aria-hidden="true">
-        <!-- Scissors SVG -->
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="4.5" cy="7.5" r="2.5" stroke="white" stroke-width="1.5"/>
-          <circle cx="4.5" cy="16.5" r="2.5" stroke="white" stroke-width="1.5"/>
-          <line x1="6.8" y1="8.9" x2="20" y2="4" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="6.8" y1="15.1" x2="20" y2="20" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="13" y1="12" x2="20" y2="12" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
-      </div>
       <span class="nav-logo-text">Adam <em>K.</em></span>
     </a>
 
@@ -967,7 +917,6 @@
   <!-- ================= HERO ================= -->
   <section id="hero" aria-label="Úvod">
     <div class="hero-year-bg" aria-hidden="true">1938</div>
-    <div class="barber-pole" aria-hidden="true"><div class="barber-pole-track"></div></div>
     <div class="hero-rule-decor" aria-hidden="true"></div>
 
     <div class="hero-body">
