@@ -251,7 +251,8 @@
        HERO
     ============================================================ */
     #hero {
-      min-height: 100svh;
+      height: 100svh;
+      min-height: 640px;
       position: relative;
       overflow: hidden;
       display: flex;
@@ -318,12 +319,71 @@
       position: relative;
       z-index: 2;
       flex: 1;
-      display: flex;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
       align-items: center;
-      padding: 8rem 2.5rem 7rem;
+      padding: 5rem 2.5rem 1.5rem;
       max-width: 1160px;
       margin: 0 auto;
       width: 100%;
+      overflow: hidden;
+    }
+
+    /* Hero right info panel */
+    .hero-right {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .hic {
+      background: rgba(255,255,255,0.035);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 1.4rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      transition: border-color 0.25s;
+    }
+    .hic:hover { border-color: rgba(200,169,126,0.35); }
+    .hic--accent {
+      background: rgba(155,35,53,0.12);
+      border-color: rgba(155,35,53,0.3);
+    }
+    .hic-icon {
+      margin-bottom: 0.5rem;
+    }
+    .hic-icon svg {
+      width: 18px; height: 18px;
+      stroke: var(--tan);
+      fill: none;
+      stroke-width: 1.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .hic--accent .hic-icon svg { stroke: var(--tan); }
+    .hic-label {
+      font-size: 0.67rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+    .hic-val {
+      font-size: 0.88rem;
+      color: var(--text-lt);
+      font-weight: 500;
+      line-height: 1.5;
+    }
+    .hic-big {
+      font-family: 'Abril Fatface', serif;
+      font-size: 1.8rem;
+      color: var(--tan);
+      line-height: 1.1;
+    }
+    .hic-wide {
+      grid-column: 1 / -1;
     }
 
     .hero-badge {
@@ -339,7 +399,7 @@
       font-weight: 700;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      margin-bottom: 1.75rem;
+      margin-bottom: 1.25rem;
     }
     .hero-badge::before {
       content: '';
@@ -356,27 +416,27 @@
 
     .hero-h1 {
       font-family: 'Abril Fatface', serif;
-      font-size: clamp(3.2rem, 9vw, 8rem);
-      line-height: 0.93;
+      font-size: clamp(2.4rem, 5.5vw, 5.2rem);
+      line-height: 0.95;
       margin-bottom: 0;
     }
     .hero-h1 .line-sub { color: var(--tan); display: block; }
 
     .hero-divider {
-      width: 72px;
+      width: 60px;
       height: 3px;
       background: var(--accent);
-      margin: 1.6rem 0;
+      margin: 1.2rem 0;
     }
 
     .hero-lead {
-      font-size: 1.05rem;
+      font-size: 0.975rem;
       font-weight: 300;
       font-style: italic;
       color: var(--text-dim);
-      max-width: 440px;
+      max-width: 420px;
       line-height: 1.72;
-      margin-bottom: 2.4rem;
+      margin-bottom: 2rem;
     }
 
     .hero-ctas {
@@ -455,12 +515,12 @@
     /* ============================================================
        SERVICES
     ============================================================ */
-    #sluzby { background: var(--dark-mid); }
+    #sluzby { background: var(--dark-mid); padding-bottom: 4rem; }
     .services-hd {
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
-      margin-bottom: 3.5rem;
+      margin-bottom: 2.5rem;
       flex-wrap: wrap;
       gap: 1.5rem;
     }
@@ -491,10 +551,10 @@
     .svc:hover::before { transform: scaleY(1); }
     .svc-num {
       font-family: 'Abril Fatface', serif;
-      font-size: 3.2rem;
-      color: rgba(200,169,126,0.1);
+      font-size: 2.2rem;
+      color: rgba(200,169,126,0.13);
       line-height: 1;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.6rem;
     }
     .svc-name {
       font-size: 1rem;
@@ -839,6 +899,8 @@
       .price-grid     { grid-template-columns: 1fr; }
       .about-grid     { grid-template-columns: 1fr; gap: 3rem; }
       .kontakt-grid   { grid-template-columns: 1fr; }
+      .hero-body      { grid-template-columns: 1fr; }
+      .hero-right     { display: none; }
     }
 
     @media (max-width: 768px) {
@@ -847,7 +909,7 @@
       .nav-ham   { display: flex; }
       section    { padding: 4rem 1.5rem; }
       #hodiny    { padding: 3rem 1.5rem; }
-      .hero-body { padding: 7rem 1.5rem 6rem; }
+      .hero-body { padding: 5rem 1.5rem 1rem; }
       .hero-strip { flex-direction: column; align-items: flex-start; gap: 0.875rem; padding: 1.25rem 1.5rem; }
       .stats-row  { grid-template-columns: 1fr; padding: 2rem 1.5rem; }
       .stat       { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.14); padding-bottom: 1.5rem; }
@@ -909,6 +971,7 @@
     <div class="hero-rule-decor" aria-hidden="true"></div>
 
     <div class="hero-body">
+      <!-- LEFT -->
       <div>
         <div class="hero-badge fi">Téměř 100 let tradice &nbsp;·&nbsp; Uherské Hradiště</div>
 
@@ -926,10 +989,42 @@
 
         <div class="hero-ctas fi fi-d3">
           <a href="#cenik" class="btn btn-primary">
-            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
             Ceník služeb
           </a>
           <a href="#kontakt" class="btn btn-ghost">Jak nás najít</a>
+        </div>
+      </div>
+
+      <!-- RIGHT info panel -->
+      <div class="hero-right fi fi-d2">
+        <div class="hic">
+          <div class="hic-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="hic-label">Adresa</div>
+          <div class="hic-val">Protzkarova 33<br>686 01 Uherské Hradiště</div>
+        </div>
+        <div class="hic hic--accent">
+          <div class="hic-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/></svg>
+          </div>
+          <div class="hic-label">Bez objednání</div>
+          <div class="hic-val">Přijďte kdykoliv<br>v otevírací době</div>
+        </div>
+        <div class="hic">
+          <div class="hic-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <div class="hic-label">Otevřeno</div>
+          <div class="hic-val">Po–Pá 07:00–17:00<br>So 06:00–10:00</div>
+        </div>
+        <div class="hic">
+          <div class="hic-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <div class="hic-label">Hodnocení</div>
+          <div class="hic-big">4.6 ★</div>
         </div>
       </div>
     </div>
@@ -948,7 +1043,7 @@
         <div><strong>Po–Pá&nbsp;07:00–17:00</strong> <span>&nbsp;·&nbsp; So&nbsp;06:00–10:00</span></div>
       </div>
       <div class="hi">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/></svg>
         <div><strong>Bez objednání</strong> <span>&mdash; přijďte kdykoliv</span></div>
       </div>
     </div>
@@ -958,7 +1053,7 @@
   <div id="stats" aria-label="Fakta o nás">
     <div class="stats-row">
       <div class="stat fi">
-        <div class="stat-num" data-target="100">0</div>
+        <div class="stat-num">~100</div>
         <div class="stat-lbl">let tradice v oboru</div>
       </div>
       <div class="stat fi fi-d1">
@@ -1268,23 +1363,6 @@
       document.querySelectorAll('#hero .fi').forEach(el => el.classList.add('vis'));
     }, 80);
 
-    /* ---- Counter animation ---- */
-    const cntIO = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (!e.isIntersecting) return;
-        const el = e.target;
-        const target = parseInt(el.dataset.target);
-        let val = 0;
-        const step = target / 55;
-        const t = setInterval(() => {
-          val += step;
-          if (val >= target) { el.textContent = target + '+'; clearInterval(t); }
-          else                 el.textContent = Math.floor(val) + '+';
-        }, 22);
-        cntIO.unobserve(el);
-      });
-    }, { threshold: 0.5 });
-    document.querySelectorAll('[data-target]').forEach(el => cntIO.observe(el));
 
     /* ---- Mobile nav ---- */
     function openMobNav()  { document.getElementById('mob-nav').classList.add('open');    document.body.style.overflow = 'hidden'; }
