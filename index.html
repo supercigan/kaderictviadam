@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pánské kadeřnictví Adam — klasické pánské holičství s téměř stoletou tradicí. Jediné svého druhu v okrese Uherské Hradiště. Bez objednání.">
+  <title>Pánské kadeřnictví Adam | Uherské Hradiště</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       ROOT VARIABLES
+    ============================================================ */
+    :root {
+      --dark:       #1C1917;
+      --dark-mid:   #252220;
+      --dark-card:  #2A2520;
+      --accent:     #9B2335;
+      --accent-hov: #7D1B2A;
+      --tan:        #C8A97E;
+      --tan-light:  #E6D3B5;
+      --cream:      #F5F0E8;
+      --text-lt:    #EDE6DD;
+      --text-dim:   #9A8F87;
+      --text-dark:  #2A2320;
+      --border:     rgba(200, 169, 126, 0.18);
+      --border-lt:  rgba(200, 169, 126, 0.10);
+    }
+
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Work Sans', sans-serif;
+      background: var(--dark);
+      color: var(--text-lt);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; }
+
+    /* ============================================================
+       TYPOGRAPHY HELPERS
+    ============================================================ */
+    .serif { font-family: 'Abril Fatface', serif; }
+    .section-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.8rem;
+    }
+    .section-title {
+      font-family: 'Abril Fatface', serif;
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      color: var(--text-lt);
+    }
+    .section-desc {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: var(--text-dim);
+      max-width: 540px;
+    }
+
+    /* ============================================================
+       LAYOUT
+    ============================================================ */
+    .container { max-width: 1160px; margin: 0 auto; }
+    section { padding: 6rem 2.5rem; }
+
+    /* ============================================================
+       BUTTONS
+    ============================================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Work Sans', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      padding: 0.875rem 2rem;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn-primary:hover { background: var(--accent-hov); transform: translateY(-1px); }
+    .btn-ghost {
+      background: transparent;
+      color: var(--tan);
+      border: 1px solid rgba(200,169,126,0.35);
+    }
+    .btn-ghost:hover { background: rgba(200,169,126,0.08); border-color: var(--tan); }
+
+    /* ============================================================
+       FADE-IN ANIMATIONS
+    ============================================================ */
+    .fi {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .fi.vis { opacity: 1; transform: translateY(0); }
+    .fi-d1 { transition-delay: 0.1s; }
+    .fi-d2 { transition-delay: 0.2s; }
+    .fi-d3 { transition-delay: 0.3s; }
+    .fi-d4 { transition-delay: 0.4s; }
+
+    /* ============================================================
+       NAV
+    ============================================================ */
+    #nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 200;
+      padding: 1.25rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: padding 0.4s ease, background 0.4s ease, border-color 0.4s ease;
+      border-bottom: 1px solid transparent;
+    }
+    #nav.scrolled {
+      background: rgba(28, 25, 23, 0.94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-color: var(--border-lt);
+      padding: 0.875rem 2.5rem;
+    }
+
+    /* Logo */
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      text-decoration: none;
+    }
+    .nav-logo-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--accent);
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .nav-logo-icon svg { width: 22px; height: 22px; }
+    .nav-logo-text {
+      font-family: 'Abril Fatface', serif;
+      font-size: 1.65rem;
+      line-height: 1;
+      color: var(--text-lt);
+    }
+    .nav-logo-text em { font-style: normal; color: var(--tan); }
+
+    /* Desktop links */
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.25rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: color 0.25s;
+    }
+    .nav-links a:hover { color: var(--tan); }
+    .nav-links .nav-cta {
+      background: var(--accent);
+      color: #fff;
+      padding: 0.5rem 1.25rem;
+      border-radius: 2px;
+      transition: background 0.25s;
+    }
+    .nav-links .nav-cta:hover { background: var(--accent-hov); color: #fff; }
+
+    /* Hamburger */
+    .nav-ham {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .nav-ham span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text-lt);
+      border-radius: 1px;
+      transition: all 0.3s;
+    }
+
+    /* Mobile overlay nav */
+    #mob-nav {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 199;
+      background: rgba(28, 25, 23, 0.98);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.25rem;
+    }
+    #mob-nav.open { display: flex; }
+    #mob-nav a {
+      font-family: 'Abril Fatface', serif;
+      font-size: clamp(2rem, 6vw, 2.75rem);
+      color: var(--text-lt);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    #mob-nav a:hover { color: var(--tan); }
+    #mob-nav-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.75rem;
+      background: none;
+      border: none;
+      color: var(--text-lt);
+      font-size: 1.75rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    #hero {
+      min-height: 100svh;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      background: var(--dark);
+    }
+
+    /* Large decorative year */
+    .hero-year-bg {
+      position: absolute;
+      right: -1rem;
+      bottom: 4rem;
+      font-family: 'Abril Fatface', serif;
+      font-size: clamp(10rem, 22vw, 20rem);
+      line-height: 1;
+      color: rgba(200, 169, 126, 0.045);
+      pointer-events: none;
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    /* Animated barber pole */
+    .barber-pole {
+      position: absolute;
+      right: 7%;
+      top: 15%;
+      width: 5px;
+      height: 65vh;
+      border-radius: 3px;
+      overflow: hidden;
+      opacity: 0.22;
+    }
+    .barber-pole-track {
+      width: 100%;
+      height: 200%;
+      background: repeating-linear-gradient(
+        0deg,
+        var(--accent)  0px,
+        var(--accent)  26px,
+        #fff           26px,
+        #fff           52px,
+        var(--tan)     52px,
+        var(--tan)     78px
+      );
+      animation: poleScroll 3.5s linear infinite;
+    }
+    @keyframes poleScroll {
+      from { transform: translateY(0); }
+      to   { transform: translateY(50%); }
+    }
+
+    /* Thin diagonal rule decoration */
+    .hero-rule-decor {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, transparent, var(--accent) 30%, var(--tan) 70%, transparent);
+      opacity: 0.5;
+    }
+
+    .hero-body {
+      position: relative;
+      z-index: 2;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      padding: 8rem 2.5rem 7rem;
+      max-width: 1160px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      background: rgba(155, 35, 53, 0.14);
+      border: 1px solid rgba(155, 35, 53, 0.38);
+      color: var(--tan);
+      padding: 0.45rem 1.1rem;
+      border-radius: 100px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1.75rem;
+    }
+    .hero-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--tan);
+      animation: pls 2.2s ease-in-out infinite;
+    }
+    @keyframes pls {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.4; transform: scale(0.7); }
+    }
+
+    .hero-h1 {
+      font-family: 'Abril Fatface', serif;
+      font-size: clamp(3.2rem, 9vw, 8rem);
+      line-height: 0.93;
+      margin-bottom: 0;
+    }
+    .hero-h1 .line-sub { color: var(--tan); display: block; }
+
+    .hero-divider {
+      width: 72px;
+      height: 3px;
+      background: var(--accent);
+      margin: 1.6rem 0;
+    }
+
+    .hero-lead {
+      font-size: 1.05rem;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--text-dim);
+      max-width: 440px;
+      line-height: 1.72;
+      margin-bottom: 2.4rem;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* Bottom info strip */
+    .hero-strip {
+      position: relative;
+      z-index: 2;
+      background: rgba(37, 34, 32, 0.78);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid var(--border);
+      padding: 1.1rem 2.5rem;
+      display: flex;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .hi {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-size: 0.85rem;
+      line-height: 1.4;
+    }
+    .hi svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      stroke: var(--tan);
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .hi strong { color: var(--text-lt); font-weight: 600; }
+    .hi span   { color: var(--text-dim); }
+
+    /* ============================================================
+       STATS STRIP
+    ============================================================ */
+    #stats {
+      background: var(--accent);
+      padding: 0;
+    }
+    .stats-row {
+      max-width: 1160px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      padding: 3rem 2.5rem;
+    }
+    .stat {
+      text-align: center;
+      padding: 1rem 1.5rem;
+      border-right: 1px solid rgba(255,255,255,0.18);
+    }
+    .stat:last-child { border-right: none; }
+    .stat-num {
+      font-family: 'Abril Fatface', serif;
+      font-size: clamp(2.8rem, 5vw, 4.2rem);
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+    .stat-lbl {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.78);
+      letter-spacing: 0.04em;
+    }
+
+    /* ============================================================
+       SERVICES
+    ============================================================ */
+    #sluzby { background: var(--dark-mid); }
+    .services-hd {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3.5rem;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+    }
+    .svc {
+      background: var(--dark-mid);
+      padding: 2.25rem 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s;
+    }
+    .svc::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: var(--accent);
+      transform: scaleY(0);
+      transform-origin: bottom;
+      transition: transform 0.35s ease;
+    }
+    .svc:hover { background: rgba(155,35,53,0.07); }
+    .svc:hover::before { transform: scaleY(1); }
+    .svc-num {
+      font-family: 'Abril Fatface', serif;
+      font-size: 3.2rem;
+      color: rgba(200,169,126,0.1);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .svc-name {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-lt);
+      margin-bottom: 0.5rem;
+    }
+    .svc-desc {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      line-height: 1.6;
+    }
+
+    /* ============================================================
+       CENÍK
+    ============================================================ */
+    #cenik { background: var(--cream); }
+    #cenik .section-label { color: var(--accent); }
+    #cenik .section-title { color: var(--text-dark); }
+    #cenik .section-desc  { color: #7A6B60; }
+
+    .price-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.75rem;
+      margin-top: 3rem;
+    }
+    .pcat {
+      background: #fff;
+      border-radius: 3px;
+      overflow: hidden;
+      box-shadow: 0 4px 28px rgba(28,25,23,0.09);
+    }
+    .pcat-hd {
+      background: var(--dark);
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .pcat-hd-line {
+      width: 3px;
+      height: 22px;
+      background: var(--accent);
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+    .pcat-title {
+      font-family: 'Abril Fatface', serif;
+      font-size: 1.2rem;
+      color: var(--tan);
+    }
+    .prow {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.9rem 1.5rem;
+      border-bottom: 1px solid #F0EAE2;
+      transition: background 0.18s;
+    }
+    .prow:last-child { border-bottom: none; }
+    .prow:hover { background: #FAF6F1; }
+    .prow-name  { font-size: 0.88rem; color: var(--text-dark); font-weight: 500; }
+    .prow-price {
+      font-family: 'Abril Fatface', serif;
+      font-size: 1.1rem;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    /* ============================================================
+       O NÁS
+    ============================================================ */
+    #onas { background: var(--dark); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .about-card {
+      background: var(--dark-card);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 2.75rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .about-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--tan));
+    }
+    .about-card-yr {
+      position: absolute;
+      bottom: -1.5rem;
+      right: -1rem;
+      font-family: 'Abril Fatface', serif;
+      font-size: 8rem;
+      color: rgba(200,169,126,0.06);
+      line-height: 1;
+      pointer-events: none;
+    }
+    .about-card blockquote {
+      font-family: 'Abril Fatface', serif;
+      font-size: 1.4rem;
+      line-height: 1.45;
+      color: var(--text-lt);
+      margin-bottom: 1.5rem;
+    }
+    .about-card p {
+      font-size: 0.875rem;
+      color: var(--text-dim);
+      line-height: 1.75;
+    }
+    .about-card p + p { margin-top: 1rem; }
+
+    .pillars { display: flex; flex-direction: column; gap: 2rem; }
+    .pillar  { display: flex; gap: 1.25rem; align-items: flex-start; }
+    .pillar-n {
+      font-family: 'Abril Fatface', serif;
+      font-size: 2.2rem;
+      color: var(--accent);
+      line-height: 1;
+      flex-shrink: 0;
+      opacity: 0.65;
+      width: 2.5rem;
+    }
+    .pillar-body h4 {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--text-lt);
+      margin-bottom: 0.35rem;
+    }
+    .pillar-body p {
+      font-size: 0.84rem;
+      color: var(--text-dim);
+      line-height: 1.65;
+    }
+
+    /* ============================================================
+       OPENING HOURS
+    ============================================================ */
+    #hodiny {
+      background: var(--accent);
+      padding: 4rem 2.5rem;
+    }
+    .hours-wrap {
+      max-width: 1160px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 3.5rem;
+      flex-wrap: wrap;
+    }
+    .hours-title {
+      font-family: 'Abril Fatface', serif;
+      font-size: 2.25rem;
+      color: #fff;
+      line-height: 1.1;
+      flex-shrink: 0;
+    }
+    .hours-cols {
+      display: flex;
+      gap: 2.5rem;
+      flex: 1;
+      flex-wrap: wrap;
+    }
+    .hcol { display: flex; flex-direction: column; gap: 0.3rem; }
+    .hcol-day {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+    }
+    .hcol-time {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .hcol-time.off {
+      font-weight: 400;
+      font-style: italic;
+      color: rgba(255,255,255,0.38);
+    }
+    .hours-note {
+      background: rgba(0,0,0,0.18);
+      border-radius: 3px;
+      padding: 1rem 1.4rem;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.6;
+      max-width: 260px;
+      flex-shrink: 0;
+    }
+
+    /* ============================================================
+       KONTAKT
+    ============================================================ */
+    #kontakt { background: var(--dark-mid); }
+    .kontakt-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .cinfo { display: flex; flex-direction: column; gap: 1.75rem; margin-top: 2.5rem; }
+    .ci { display: flex; gap: 1.1rem; align-items: flex-start; }
+    .ci-icon {
+      width: 42px;
+      height: 42px;
+      background: rgba(155,35,53,0.12);
+      border: 1px solid rgba(155,35,53,0.28);
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .ci-icon svg {
+      width: 17px; height: 17px;
+      stroke: var(--tan);
+      fill: none;
+      stroke-width: 1.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .ci-lbl {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 0.3rem;
+    }
+    .ci-val { font-size: 0.95rem; color: var(--text-lt); line-height: 1.5; }
+    .ci-val a { text-decoration: none; transition: color 0.2s; }
+    .ci-val a:hover { color: var(--tan); }
+    .ci-note { font-size: 0.78rem; color: var(--text-dim); margin-top: 0.25rem; }
+
+    .addr-alert {
+      background: rgba(155,35,53,0.1);
+      border: 1px solid rgba(155,35,53,0.28);
+      border-radius: 3px;
+      padding: 0.875rem 1.1rem;
+      margin-top: 0.6rem;
+    }
+    .addr-alert-lbl {
+      font-size: 0.67rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--tan);
+      margin-bottom: 0.3rem;
+    }
+    .addr-alert p {
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      line-height: 1.55;
+    }
+
+    /* Form */
+    .cform { display: flex; flex-direction: column; gap: 1rem; }
+    .cform-title {
+      font-family: 'Abril Fatface', serif;
+      font-size: 1.6rem;
+      color: var(--text-lt);
+      margin-bottom: 0.25rem;
+    }
+    .frow { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .fg { display: flex; flex-direction: column; gap: 0.4rem; }
+    .fg label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+    .fg input, .fg textarea {
+      background: rgba(255,255,255,0.038);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      padding: 0.8rem 1rem;
+      color: var(--text-lt);
+      font-family: 'Work Sans', sans-serif;
+      font-size: 0.9rem;
+      transition: border-color 0.25s;
+      outline: none;
+      resize: vertical;
+    }
+    .fg input::placeholder, .fg textarea::placeholder { color: var(--text-dim); }
+    .fg input:focus, .fg textarea:focus { border-color: rgba(155,35,53,0.55); }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer {
+      background: #0E0C0B;
+      padding: 2.75rem 2.5rem;
+      border-top: 1px solid var(--border-lt);
+    }
+    .footer-in {
+      max-width: 1160px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .foot-logo {
+      font-family: 'Abril Fatface', serif;
+      font-size: 1.2rem;
+      color: var(--text-lt);
+    }
+    .foot-logo em { font-style: normal; color: var(--tan); }
+    .foot-copy {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      text-align: center;
+      line-height: 1.7;
+    }
+    .foot-links { display: flex; gap: 1.75rem; }
+    .foot-links a {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .foot-links a:hover { color: var(--tan); }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 1024px) {
+      .services-grid  { grid-template-columns: repeat(2, 1fr); }
+      .price-grid     { grid-template-columns: 1fr; }
+      .about-grid     { grid-template-columns: 1fr; gap: 3rem; }
+      .kontakt-grid   { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      #nav, #nav.scrolled { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .nav-ham   { display: flex; }
+      section    { padding: 4rem 1.5rem; }
+      #hodiny    { padding: 3rem 1.5rem; }
+      .hero-body { padding: 7rem 1.5rem 6rem; }
+      .hero-strip { flex-direction: column; align-items: flex-start; gap: 0.875rem; padding: 1.25rem 1.5rem; }
+      .stats-row  { grid-template-columns: 1fr; padding: 2rem 1.5rem; }
+      .stat       { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.14); padding-bottom: 1.5rem; }
+      .stat:last-child { border-bottom: none; }
+      .services-grid { grid-template-columns: 1fr; }
+      .frow  { grid-template-columns: 1fr; }
+      footer { padding: 2rem 1.5rem; }
+      .footer-in { flex-direction: column; align-items: center; text-align: center; }
+      .hours-wrap { gap: 2rem; }
+      .hours-note { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= MOBILE NAV ================= -->
+  <div id="mob-nav">
+    <button id="mob-nav-close" onclick="closeMobNav()" aria-label="Zavřít menu">✕</button>
+    <a href="#sluzby"  onclick="closeMobNav()">Služby</a>
+    <a href="#cenik"   onclick="closeMobNav()">Ceník</a>
+    <a href="#onas"    onclick="closeMobNav()">O nás</a>
+    <a href="#hodiny"  onclick="closeMobNav()">Otevírací doby</a>
+    <a href="#kontakt" onclick="closeMobNav()">Kontakt</a>
+  </div>
+
+  <!-- ================= NAV ================= -->
+  <nav id="nav" role="navigation" aria-label="Hlavní navigace">
+    <a href="#hero" class="nav-logo" aria-label="Pánské kadeřnictví Adam – domů">
+      <div class="nav-logo-icon" aria-hidden="true">
+        <!-- Scissors SVG -->
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="4.5" cy="7.5" r="2.5" stroke="white" stroke-width="1.5"/>
+          <circle cx="4.5" cy="16.5" r="2.5" stroke="white" stroke-width="1.5"/>
+          <line x1="6.8" y1="8.9" x2="20" y2="4" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="6.8" y1="15.1" x2="20" y2="20" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="13" y1="12" x2="20" y2="12" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <span class="nav-logo-text">Adam <em>K.</em></span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#sluzby">Služby</a></li>
+      <li><a href="#cenik">Ceník</a></li>
+      <li><a href="#onas">O nás</a></li>
+      <li><a href="#hodiny">Otevírací doby</a></li>
+      <li><a href="#kontakt" class="nav-cta">Kontakt</a></li>
+    </ul>
+
+    <div class="nav-ham" onclick="openMobNav()" aria-label="Otevřít menu" role="button" tabindex="0">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- ================= HERO ================= -->
+  <section id="hero" aria-label="Úvod">
+    <div class="hero-year-bg" aria-hidden="true">1938</div>
+    <div class="barber-pole" aria-hidden="true"><div class="barber-pole-track"></div></div>
+    <div class="hero-rule-decor" aria-hidden="true"></div>
+
+    <div class="hero-body">
+      <div>
+        <div class="hero-badge fi">Téměř 100 let tradice &nbsp;·&nbsp; Uherské Hradiště</div>
+
+        <h1 class="hero-h1 fi fi-d1">
+          Pánské<br>
+          kadeřnictví
+          <span class="line-sub">Adam</span>
+        </h1>
+
+        <div class="hero-divider fi fi-d2"></div>
+
+        <p class="hero-lead fi fi-d2">
+          Nejsme barbershop &mdash; jsme poctivé řemeslo předávané generacemi. Jediné svého druhu v&nbsp;okrese.
+        </p>
+
+        <div class="hero-ctas fi fi-d3">
+          <a href="#cenik" class="btn btn-primary">
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            Ceník služeb
+          </a>
+          <a href="#kontakt" class="btn btn-ghost">Jak nás najít</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-strip">
+      <div class="hi">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <div><strong>Protzkarova 33</strong> <span>, 686 01 Uherské Hradiště</span></div>
+      </div>
+      <div class="hi">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.13 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.07 1.2h3a2 2 0 0 1 2 1.72c.127.96.36 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.34 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <div><strong>+420 775 226 449</strong></div>
+      </div>
+      <div class="hi">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <div><strong>Po–Pá&nbsp;07:00–17:00</strong> <span>&nbsp;·&nbsp; So&nbsp;06:00–10:00</span></div>
+      </div>
+      <div class="hi">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg>
+        <div><strong>Bez objednání</strong> <span>&mdash; přijďte kdykoliv</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= STATS ================= -->
+  <div id="stats" aria-label="Fakta o nás">
+    <div class="stats-row">
+      <div class="stat fi">
+        <div class="stat-num" data-target="100">0</div>
+        <div class="stat-lbl">let tradice v oboru</div>
+      </div>
+      <div class="stat fi fi-d1">
+        <div class="stat-num">4.6 ★</div>
+        <div class="stat-lbl">hodnocení zákazníků</div>
+      </div>
+      <div class="stat fi fi-d2">
+        <div class="stat-num">#1</div>
+        <div class="stat-lbl">klasické holičství v okrese UH</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= SLUŽBY ================= -->
+  <section id="sluzby" aria-labelledby="sluzby-title">
+    <div class="container">
+      <div class="services-hd">
+        <div>
+          <div class="section-label fi">Co děláme</div>
+          <h2 class="section-title fi fi-d1" id="sluzby-title">Naše služby</h2>
+          <p class="section-desc fi fi-d2">Od klasického střihu po precizní úpravu vousu &mdash; vše poctivým řemeslem, bez spěchu.</p>
+        </div>
+        <a href="#cenik" class="btn btn-ghost fi">Zobrazit ceník &rarr;</a>
+      </div>
+
+      <div class="services-grid">
+        <div class="svc fi">
+          <div class="svc-num">01</div>
+          <div class="svc-name">Klasický střih</div>
+          <div class="svc-desc">Tradiční pánský střih nůžkami nebo strojkem — přesně podle vašich představ. Od 240 Kč.</div>
+        </div>
+        <div class="svc fi fi-d1">
+          <div class="svc-num">02</div>
+          <div class="svc-name">Fade střih</div>
+          <div class="svc-desc">Moderní střih s plynulým přechodem — čistý výsledek na nejvyšší úrovni. 350 Kč.</div>
+        </div>
+        <div class="svc fi fi-d2">
+          <div class="svc-num">03</div>
+          <div class="svc-name">Stříhání dohola</div>
+          <div class="svc-desc">Kompletní oholení strojkem a planžetou — dokonale hladký výsledek. 300 Kč.</div>
+        </div>
+        <div class="svc fi">
+          <div class="svc-num">04</div>
+          <div class="svc-name">Úprava vousu</div>
+          <div class="svc-desc">Tvarování a střih plnovousu, bradky nebo kníru — každý chlup na svém místě.</div>
+        </div>
+        <div class="svc fi fi-d1">
+          <div class="svc-num">05</div>
+          <div class="svc-name">Dětský střih</div>
+          <div class="svc-desc">Střihy pro předškolní děti v klidném a přátelském prostředí. 240 Kč.</div>
+        </div>
+        <div class="svc fi fi-d2">
+          <div class="svc-num">06</div>
+          <div class="svc-name">Mytí &amp; Styling</div>
+          <div class="svc-desc">Mytí vlasů, vlasová voda, masáž hlavy nebo tvarování účesu foukačem.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CENÍK ================= -->
+  <section id="cenik" aria-labelledby="cenik-title">
+    <div class="container">
+      <div class="section-label fi">Transparentní ceny</div>
+      <h2 class="section-title fi fi-d1" id="cenik-title">Ceník služeb</h2>
+      <p class="section-desc fi fi-d2">Žádné skryté poplatky, žádná překvapení. Ceny jsou konečné a včetně všeho.</p>
+
+      <div class="price-grid">
+
+        <!-- Střihy -->
+        <div class="pcat fi">
+          <div class="pcat-hd">
+            <div class="pcat-hd-line"></div>
+            <div class="pcat-title">Střihy</div>
+          </div>
+          <div class="prow"><span class="prow-name">Stříhání vlasů</span><span class="prow-price">260 Kč</span></div>
+          <div class="prow"><span class="prow-name">Stříhání strojkem do 3 mm</span><span class="prow-price">240 Kč</span></div>
+          <div class="prow"><span class="prow-name">Stříhání dohola (strojek + planžeta)</span><span class="prow-price">300 Kč</span></div>
+          <div class="prow"><span class="prow-name">Stříhání předškolních dětí</span><span class="prow-price">240 Kč</span></div>
+          <div class="prow"><span class="prow-name">Fade střih</span><span class="prow-price">350 Kč</span></div>
+          <div class="prow"><span class="prow-name">Stříhání dlouhých vlasů</span><span class="prow-price">300 Kč</span></div>
+        </div>
+
+        <!-- Vousy -->
+        <div class="pcat fi fi-d1">
+          <div class="pcat-hd">
+            <div class="pcat-hd-line"></div>
+            <div class="pcat-title">Vousy</div>
+          </div>
+          <div class="prow"><span class="prow-name">Stříhání a úprava plnovousu</span><span class="prow-price">200 Kč</span></div>
+          <div class="prow"><span class="prow-name">Stříhání bradky</span><span class="prow-price">100 Kč</span></div>
+          <div class="prow"><span class="prow-name">Stříhání kníru</span><span class="prow-price">20 Kč</span></div>
+        </div>
+
+        <!-- Doplňkové -->
+        <div class="pcat fi fi-d2">
+          <div class="pcat-hd">
+            <div class="pcat-hd-line"></div>
+            <div class="pcat-title">Doplňkové</div>
+          </div>
+          <div class="prow"><span class="prow-name">Mytí vlasů</span><span class="prow-price">80 Kč</span></div>
+          <div class="prow"><span class="prow-name">Tvarování účesu vzduchem</span><span class="prow-price">100 Kč</span></div>
+          <div class="prow"><span class="prow-name">Masáž hlavy, vlasová voda</span><span class="prow-price">100 Kč</span></div>
+          <div class="prow"><span class="prow-name">Styling (gel, lak, pasta)</span><span class="prow-price">20 Kč</span></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= O NÁS ================= -->
+  <section id="onas" aria-labelledby="onas-title">
+    <div class="container">
+      <div class="about-grid">
+
+        <div class="about-card fi">
+          <div class="about-card-yr" aria-hidden="true">~100</div>
+          <blockquote>
+            &ldquo;Nejsme barbershop &mdash; jsme poctivá řemeslná práce předávaná generacemi.&rdquo;
+          </blockquote>
+          <p>
+            Naše kadeřnictví má kořeny sahající až do první poloviny 20.&nbsp;století. Tehdy sídlilo na Nádražní ulici — a&nbsp;dnes, po téměř stu letech, zůstáváme věrni odkazu, který nám předali naši předchůdci.
+          </p>
+          <p>
+            Přicházejí k nám otcové i&nbsp;jejich synové. Muži, kteří s námi tráví první dětský střih — a&nbsp;vracejí se celý život. Prostě přijdou. Bez termínu, bez čekání v&nbsp;aplikaci.
+          </p>
+        </div>
+
+        <div class="pillars">
+          <div>
+            <div class="section-label fi">Naše hodnoty</div>
+            <h2 class="section-title fi fi-d1" id="onas-title">Proč si nás zákazníci vybírají</h2>
+          </div>
+          <div class="pillar fi fi-d1">
+            <div class="pillar-n">01</div>
+            <div class="pillar-body">
+              <h4>Tradice a zkušenosti</h4>
+              <p>Téměř sto let praxe v oboru. Zkušení kadeřníci s desetiletími za sebou — a jejich mladší kolegové, kteří tradici nesou dál.</p>
+            </div>
+          </div>
+          <div class="pillar fi fi-d2">
+            <div class="pillar-n">02</div>
+            <div class="pillar-body">
+              <h4>Bez objednání</h4>
+              <p>Prostě přijdete. Žádné rezervační systémy, žádné čekání na termín. Klasické holičství, jak má být.</p>
+            </div>
+          </div>
+          <div class="pillar fi fi-d3">
+            <div class="pillar-n">03</div>
+            <div class="pillar-body">
+              <h4>Osobní přístup</h4>
+              <p>Známe vás. Víme, jaký střih nosíte. Nedáváme každému stejný výsledek — reagujeme na vás konkrétně.</p>
+            </div>
+          </div>
+          <div class="pillar fi fi-d4">
+            <div class="pillar-n">04</div>
+            <div class="pillar-body">
+              <h4>Jediné v okrese</h4>
+              <p>Klasické řemeslné holičství — jediné svého druhu v&nbsp;celém okrese Uherské Hradiště. Opravdová vzácnost.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= OTEVÍRACÍ DOBY ================= -->
+  <div id="hodiny" aria-label="Otevírací doby">
+    <div class="hours-wrap">
+      <div class="hours-title">Otevírací<br>doby</div>
+      <div class="hours-cols">
+        <div class="hcol">
+          <div class="hcol-day">Pondělí &ndash; Pátek</div>
+          <div class="hcol-time">07:00 &ndash; 17:00</div>
+        </div>
+        <div class="hcol">
+          <div class="hcol-day">Sobota</div>
+          <div class="hcol-time">06:00 &ndash; 10:00</div>
+        </div>
+        <div class="hcol">
+          <div class="hcol-day">Neděle</div>
+          <div class="hcol-time off">Zavřeno</div>
+        </div>
+      </div>
+      <div class="hours-note">
+        Pokud se telefon neozývá, právě pracujeme. Zanechte SMS &mdash; ozveme se co nejdříve.
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= KONTAKT ================= -->
+  <section id="kontakt" aria-labelledby="kontakt-title">
+    <div class="container">
+      <div class="kontakt-grid">
+
+        <div>
+          <div class="section-label fi">Kde nás najdete</div>
+          <h2 class="section-title fi fi-d1" id="kontakt-title">Kontakt</h2>
+          <p class="section-desc fi fi-d2">Najdete nás v centru Uherského Hradiště. Přijďte v otevírací době — bez objednání.</p>
+
+          <div class="cinfo">
+            <div class="ci fi">
+              <div class="ci-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div>
+                <div class="ci-lbl">Aktuální adresa</div>
+                <div class="ci-val">Protzkarova 33, 686 01 Uherské Hradiště</div>
+                <div class="addr-alert">
+                  <div class="addr-alert-lbl">⚡ Stěhujeme se od 1. 6. 2026</div>
+                  <p>Nová adresa: Hradební 1250, 686 01 Uherské Hradiště</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="ci fi fi-d1">
+              <div class="ci-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.13 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.07 1.2h3a2 2 0 0 1 2 1.72c.127.96.36 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.34 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </div>
+              <div>
+                <div class="ci-lbl">Telefon</div>
+                <div class="ci-val"><a href="tel:+420775226449">+420 775 226 449</a></div>
+                <div class="ci-note">Pokud nedvoří — zanechte SMS</div>
+              </div>
+            </div>
+
+            <div class="ci fi fi-d2">
+              <div class="ci-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <div>
+                <div class="ci-lbl">Email</div>
+                <div class="ci-val"><a href="mailto:info@kadernictviadam-uh.cz">info@kadernictviadam-uh.cz</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <div>
+          <div class="cform fi">
+            <div class="cform-title">Napište nám</div>
+            <p style="font-size:0.85rem; color:var(--text-dim); margin-bottom:0.5rem; line-height:1.6;">
+              Máte dotaz na střih nebo potřebujete více informací? Rádi odpovíme.
+            </p>
+            <div class="frow">
+              <div class="fg">
+                <label for="fname">Jméno</label>
+                <input id="fname" type="text" placeholder="Vaše jméno" autocomplete="name">
+              </div>
+              <div class="fg">
+                <label for="fphone">Telefon</label>
+                <input id="fphone" type="tel" placeholder="+420 xxx xxx xxx" autocomplete="tel">
+              </div>
+            </div>
+            <div class="fg">
+              <label for="femail">Email</label>
+              <input id="femail" type="email" placeholder="vas@email.cz" autocomplete="email">
+            </div>
+            <div class="fg">
+              <label for="fmsg">Zpráva</label>
+              <textarea id="fmsg" rows="4" placeholder="Vaše zpráva…"></textarea>
+            </div>
+            <button type="button" class="btn btn-primary" style="align-self:flex-start;" onclick="handleForm(this)">
+              Odeslat zprávu
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer>
+    <div class="footer-in">
+      <div class="foot-logo">Pánské kadeřnictví <em>Adam</em></div>
+      <div class="foot-copy">
+        &copy; 2025 Pánské kadeřnictví Adam &middot; Uherské Hradiště<br>
+        <small style="opacity:0.55;">Protzkarova 33 &middot; +420 775 226 449 &middot; info@kadernictviadam-uh.cz</small>
+      </div>
+      <div class="foot-links">
+        <a href="#hero">Zpět nahoru &uarr;</a>
+        <a href="mailto:info@kadernictviadam-uh.cz">Email</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= SCRIPTS ================= -->
+  <script>
+    /* ---- Scroll: nav frosted glass ---- */
+    const navEl = document.getElementById('nav');
+    const onScroll = () => navEl.classList.toggle('scrolled', window.scrollY > 60);
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    /* ---- Fade-in via IntersectionObserver ---- */
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.fi').forEach(el => io.observe(el));
+
+    // Hero visible immediately
+    setTimeout(() => {
+      document.querySelectorAll('#hero .fi').forEach(el => el.classList.add('vis'));
+    }, 80);
+
+    /* ---- Counter animation ---- */
+    const cntIO = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const el = e.target;
+        const target = parseInt(el.dataset.target);
+        let val = 0;
+        const step = target / 55;
+        const t = setInterval(() => {
+          val += step;
+          if (val >= target) { el.textContent = target + '+'; clearInterval(t); }
+          else                 el.textContent = Math.floor(val) + '+';
+        }, 22);
+        cntIO.unobserve(el);
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('[data-target]').forEach(el => cntIO.observe(el));
+
+    /* ---- Mobile nav ---- */
+    function openMobNav()  { document.getElementById('mob-nav').classList.add('open');    document.body.style.overflow = 'hidden'; }
+    function closeMobNav() { document.getElementById('mob-nav').classList.remove('open'); document.body.style.overflow = ''; }
+
+    /* ---- Simple form feedback ---- */
+    function handleForm(btn) {
+      const form = btn.closest('.cform');
+      const name = form.querySelector('#fname').value.trim();
+      if (!name) { form.querySelector('#fname').focus(); return; }
+      btn.textContent = '✓ Odesláno';
+      btn.style.background = '#2d7a4f';
+      btn.disabled = true;
+    }
+  </script>
+</body>
+</html>
