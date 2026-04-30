@@ -163,7 +163,7 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 2.25rem;
+      gap: 0.5rem;
       list-style: none;
     }
     .nav-links a {
@@ -171,19 +171,32 @@
       font-weight: 600;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--text-dim);
+      color: var(--text-lt);
       text-decoration: none;
-      transition: color 0.25s;
+      padding: 0.45rem 1rem;
+      border-radius: 3px;
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.18);
+      transition: background 0.25s, border-color 0.25s, color 0.25s;
     }
-    .nav-links a:hover { color: var(--tan); }
+    .nav-links a:hover {
+      background: rgba(255,255,255,0.22);
+      border-color: rgba(255,255,255,0.32);
+      color: #fff;
+    }
     .nav-links .nav-cta {
       background: var(--accent);
       color: #fff;
-      padding: 0.5rem 1.25rem;
-      border-radius: 2px;
+      padding: 0.45rem 1.25rem;
+      border-radius: 3px;
+      border-color: transparent;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
       transition: background 0.25s;
     }
-    .nav-links .nav-cta:hover { background: var(--accent-hov); color: #fff; }
+    .nav-links .nav-cta:hover { background: var(--accent-hov); color: #fff; border-color: transparent; }
 
     /* Hamburger */
     .nav-ham {
@@ -239,14 +252,33 @@
     /* ============================================================
        HERO
     ============================================================ */
+    /* Photo banner — starts behind nav */
+    #hero-photo {
+      height: 50vh;
+      min-height: 220px;
+      position: relative;
+      background: url('web-hero-image.png') center 55%/100% auto no-repeat;
+      background-color: var(--dark);
+    }
+    #hero-photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(28,25,23,0.15) 0%,
+        rgba(28,25,23,0.15) 55%,
+        rgba(28,25,23,1) 100%
+      );
+    }
+
     #hero {
-      height: 100svh;
-      min-height: 640px;
       position: relative;
       overflow: hidden;
       display: flex;
       flex-direction: column;
       background: var(--dark);
+      padding-top: 0;
     }
 
     /* Large decorative year */
@@ -283,12 +315,13 @@
       grid-template-columns: 1fr 1fr;
       gap: 3rem;
       align-items: center;
-      padding: 5rem 2.5rem 1.5rem;
+      padding: 0.5rem 2.5rem 2rem;
       max-width: 1160px;
       margin: 0 auto;
       width: 100%;
       overflow: hidden;
     }
+
 
     /* Hero right info panel */
     .hero-right {
@@ -417,6 +450,7 @@
       gap: 2.5rem;
       flex-wrap: wrap;
       align-items: center;
+      justify-content: space-evenly;
     }
     .hi {
       display: flex;
@@ -716,6 +750,87 @@
     }
 
     /* ============================================================
+       GALERIE
+    ============================================================ */
+    #galerie { background: var(--dark); }
+    #galerie .section-header { text-align: center; margin-bottom: 3rem; }
+    #galerie .section-header .section-desc { margin: 0 auto; }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0.75rem;
+    }
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 3px;
+      cursor: pointer;
+      aspect-ratio: 3/4;
+      background: var(--dark-card);
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.45s ease;
+    }
+    .gallery-item:hover img { transform: scale(1.06); }
+    .gallery-item-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(155,35,53,0.55);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .gallery-item:hover .gallery-item-overlay { opacity: 1; }
+    .gallery-item-overlay svg {
+      width: 32px; height: 32px;
+      stroke: #fff; fill: none; stroke-width: 2;
+    }
+
+    /* Lightbox */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 500;
+      background: rgba(0,0,0,0.92);
+      align-items: center;
+      justify-content: center;
+    }
+    #lightbox.open { display: flex; }
+    #lightbox img {
+      max-width: 90vw;
+      max-height: 88vh;
+      border-radius: 3px;
+      box-shadow: 0 0 60px rgba(0,0,0,0.6);
+    }
+    .lb-close {
+      position: absolute; top: 1.25rem; right: 1.5rem;
+      background: none; border: none; color: #fff;
+      font-size: 2rem; cursor: pointer; line-height: 1;
+    }
+    .lb-arrow {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+      color: #fff; font-size: 1.5rem; cursor: pointer;
+      padding: 0.6rem 0.9rem; border-radius: 3px;
+      transition: background 0.2s;
+    }
+    .lb-arrow:hover { background: rgba(255,255,255,0.2); }
+    .lb-prev { left: 1rem; }
+    .lb-next { right: 1rem; }
+
+    @media (max-width: 768px) {
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* ============================================================
        KONTAKT
     ============================================================ */
     #kontakt { background: var(--dark-mid); }
@@ -904,6 +1019,7 @@
     <ul class="nav-links">
       <li><a href="#sluzby">Služby</a></li>
       <li><a href="#cenik">Ceník</a></li>
+      <li><a href="#galerie">Galerie</a></li>
       <li><a href="#onas">O nás</a></li>
       <li><a href="#hodiny">Otevírací doby</a></li>
       <li><a href="#kontakt" class="nav-cta">Kontakt</a></li>
@@ -913,6 +1029,9 @@
       <span></span><span></span><span></span>
     </div>
   </nav>
+
+  <!-- ================= HERO PHOTO ================= -->
+  <div id="hero-photo" aria-hidden="true"></div>
 
   <!-- ================= HERO ================= -->
   <section id="hero" aria-label="Úvod">
@@ -932,11 +1051,7 @@
 
         <div class="hero-divider fi fi-d2"></div>
 
-        <p class="hero-lead fi fi-d2">
-          Nejsme barbershop &mdash; jsme poctivé řemeslo předávané generacemi. Jediné svého druhu v&nbsp;okrese.
-        </p>
-
-        <div class="hero-ctas fi fi-d3">
+        <div class="hero-ctas fi fi-d2">
           <a href="#cenik" class="btn btn-primary">
             <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
             Ceník služeb
@@ -1170,6 +1285,67 @@
     </div>
   </section>
 
+  <!-- ================= GALERIE ================= -->
+  <section id="galerie" aria-labelledby="galerie-title">
+    <div class="container">
+      <div class="section-header fi">
+        <span class="section-label">Fotogalerie</span>
+        <h2 class="section-title" id="galerie-title">Naše práce</h2>
+      </div>
+      <!-- GALLERY -->
+      <div class="gallery-grid">
+        <div class="gallery-item fi fi-d1" data-src="photos/foto-1.jpeg">
+          <img src="photos/foto-1.jpeg" alt="Kadeřnictví Adam - foto 1" loading="lazy">
+          <div class="gallery-item-overlay"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+        </div>
+        <div class="gallery-item fi fi-d2" data-src="photos/foto-2.jpeg">
+          <img src="photos/foto-2.jpeg" alt="Kadeřnictví Adam - foto 2" loading="lazy">
+          <div class="gallery-item-overlay"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+        </div>
+        <div class="gallery-item fi fi-d3" data-src="photos/foto-3.jpeg">
+          <img src="photos/foto-3.jpeg" alt="Kadeřnictví Adam - foto 3" loading="lazy">
+          <div class="gallery-item-overlay"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+        </div>
+        <div class="gallery-item fi fi-d1" data-src="photos/foto-4.jpeg">
+          <img src="photos/foto-4.jpeg" alt="Kadeřnictví Adam - foto 4" loading="lazy">
+          <div class="gallery-item-overlay"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+        </div>
+        <div class="gallery-item fi fi-d2" data-src="photos/foto-5.jpeg">
+          <img src="photos/foto-5.jpeg" alt="Kadeřnictví Adam - foto 5" loading="lazy">
+          <div class="gallery-item-overlay"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+        </div>
+        <div class="gallery-item fi fi-d3" data-src="photos/foto-6.jpeg">
+          <img src="photos/foto-6.jpeg" alt="Kadeřnictví Adam - foto 6" loading="lazy">
+          <div class="gallery-item-overlay"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+        </div>
+        <div class="gallery-item fi fi-d1" data-src="photos/foto-7.jpeg">
+          <img src="photos/foto-7.jpeg" alt="Kadeřnictví Adam - foto 7" loading="lazy">
+          <div class="gallery-item-overlay"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+        </div>
+        <div class="gallery-item fi fi-d2" data-src="photos/foto-8.jpeg">
+          <img src="photos/foto-8.jpeg" alt="Kadeřnictví Adam - foto 8" loading="lazy">
+          <div class="gallery-item-overlay"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+        </div>
+        <div class="gallery-item fi fi-d3" data-src="photos/foto-9.jpeg">
+          <img src="photos/foto-9.jpeg" alt="Kadeřnictví Adam - foto 9" loading="lazy">
+          <div class="gallery-item-overlay"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+        </div>
+        <div class="gallery-item fi fi-d1" data-src="photos/foto-10.jpeg">
+          <img src="photos/foto-10.jpeg" alt="Kadeřnictví Adam - foto 10" loading="lazy">
+          <div class="gallery-item-overlay"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div id="lightbox" role="dialog" aria-modal="true" aria-label="Fotogalerie">
+    <button class="lb-close" onclick="closeLightbox()" aria-label="Zavřít">&times;</button>
+    <button class="lb-arrow lb-prev" onclick="lbMove(-1)" aria-label="Předchozí">&#8592;</button>
+    <img id="lb-img" src="" alt="">
+    <button class="lb-arrow lb-next" onclick="lbMove(1)" aria-label="Další">&#8594;</button>
+  </div>
+
   <!-- ================= OTEVÍRACÍ DOBY ================= -->
   <div id="hodiny" aria-label="Otevírací doby">
     <div class="hours-wrap">
@@ -1316,6 +1492,36 @@
     /* ---- Mobile nav ---- */
     function openMobNav()  { document.getElementById('mob-nav').classList.add('open');    document.body.style.overflow = 'hidden'; }
     function closeMobNav() { document.getElementById('mob-nav').classList.remove('open'); document.body.style.overflow = ''; }
+
+    /* ---- Gallery lightbox ---- */
+    let lbItems = [], lbIndex = 0;
+    document.querySelectorAll('.gallery-item').forEach((el, i) => {
+      el.addEventListener('click', () => openLightbox(i));
+    });
+    function openLightbox(i) {
+      lbItems = Array.from(document.querySelectorAll('.gallery-item'));
+      lbIndex = i;
+      document.getElementById('lb-img').src = lbItems[i].dataset.src;
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    function lbMove(dir) {
+      lbIndex = (lbIndex + dir + lbItems.length) % lbItems.length;
+      document.getElementById('lb-img').src = lbItems[lbIndex].dataset.src;
+    }
+    document.getElementById('lightbox').addEventListener('click', function(e) {
+      if (e.target === this) closeLightbox();
+    });
+    document.addEventListener('keydown', function(e) {
+      if (!document.getElementById('lightbox').classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') lbMove(-1);
+      if (e.key === 'ArrowRight') lbMove(1);
+    });
 
     /* ---- Watermark ---- */
     (function() {
