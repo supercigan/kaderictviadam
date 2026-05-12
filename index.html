@@ -14,14 +14,14 @@
        ROOT VARIABLES
     ============================================================ */
     :root {
-      --dark:       #1C1917;
-      --dark-mid:   #252220;
-      --dark-card:  #2A2520;
-      --accent:     #9B2335;
-      --accent-hov: #7D1B2A;
+      --dark:       #19120E;
+      --dark-mid:   #221A15;
+      --dark-card:  #2B2018;
+      --accent:     #5D3A28;
+      --accent-hov: #3F2519;
       --tan:        #C8A97E;
       --tan-light:  #E6D3B5;
-      --cream:      #F5F0E8;
+      --cream:      #FDFBF8;
       --text-lt:    #EDE6DD;
       --text-dim:   #9A8F87;
       --text-dark:  #2A2320;
@@ -36,8 +36,8 @@
     html { scroll-behavior: smooth; }
     body {
       font-family: 'Work Sans', sans-serif;
-      background: var(--dark);
-      color: var(--text-lt);
+      background: #FAF8F5;
+      color: var(--text-dark);
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
@@ -254,10 +254,10 @@
     ============================================================ */
     /* Photo banner — starts behind nav */
     #hero-photo {
-      height: 50vh;
-      min-height: 220px;
+      height: 74vh;
+      min-height: 360px;
       position: relative;
-      background: url('web-hero-image.png') center 55%/100% auto no-repeat;
+      background: url('web-hero-image.png') center 25%/cover no-repeat;
       background-color: var(--dark);
     }
     #hero-photo::after {
@@ -266,9 +266,9 @@
       inset: 0;
       background: linear-gradient(
         to bottom,
-        rgba(28,25,23,0.15) 0%,
-        rgba(28,25,23,0.15) 55%,
-        rgba(28,25,23,1) 100%
+        rgba(25,18,14,0.05) 0%,
+        rgba(25,18,14,0.08) 55%,
+        rgba(25,18,14,1) 100%
       );
     }
 
@@ -341,8 +341,8 @@
     }
     .hic:hover { border-color: rgba(200,169,126,0.35); }
     .hic--accent {
-      background: rgba(155,35,53,0.12);
-      border-color: rgba(155,35,53,0.3);
+      background: rgba(93,58,40,0.12);
+      border-color: rgba(93,58,40,0.3);
     }
     .hic-icon {
       margin-bottom: 0.5rem;
@@ -412,6 +412,7 @@
       font-size: clamp(2.4rem, 5.5vw, 5.2rem);
       line-height: 0.95;
       margin-bottom: 0;
+      color: #FFFFFF;
     }
     .hero-h1 .line-sub { color: var(--tan); display: block; }
 
@@ -476,7 +477,7 @@
        STATS STRIP
     ============================================================ */
     #stats {
-      background: var(--accent);
+      background: var(--dark);
       padding: 0;
     }
     .stats-row {
@@ -541,7 +542,7 @@
       transform-origin: bottom;
       transition: transform 0.35s ease;
     }
-    .svc:hover { background: rgba(155,35,53,0.07); }
+    .svc:hover { background: rgba(93,58,40,0.07); }
     .svc:hover::before { transform: scaleY(1); }
     .svc-num {
       font-family: 'Abril Fatface', serif;
@@ -780,7 +781,7 @@
     .gallery-item-overlay {
       position: absolute;
       inset: 0;
-      background: rgba(155,35,53,0.55);
+      background: rgba(93,58,40,0.55);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -846,8 +847,8 @@
     .ci-icon {
       width: 42px;
       height: 42px;
-      background: rgba(155,35,53,0.12);
-      border: 1px solid rgba(155,35,53,0.28);
+      background: rgba(93,58,40,0.12);
+      border: 1px solid rgba(93,58,40,0.28);
       border-radius: 2px;
       display: flex;
       align-items: center;
@@ -876,8 +877,8 @@
     .ci-note { font-size: 0.78rem; color: var(--text-dim); margin-top: 0.25rem; }
 
     .addr-alert {
-      background: rgba(155,35,53,0.1);
-      border: 1px solid rgba(155,35,53,0.28);
+      background: rgba(93,58,40,0.1);
+      border: 1px solid rgba(93,58,40,0.28);
       border-radius: 3px;
       padding: 0.875rem 1.1rem;
       margin-top: 0.6rem;
@@ -926,7 +927,7 @@
       resize: vertical;
     }
     .fg input::placeholder, .fg textarea::placeholder { color: var(--text-dim); }
-    .fg input:focus, .fg textarea:focus { border-color: rgba(155,35,53,0.55); }
+    .fg input:focus, .fg textarea:focus { border-color: rgba(93,58,40,0.55); }
 
     /* ============================================================
        FOOTER
@@ -996,6 +997,75 @@
       .hours-wrap { gap: 2rem; }
       .hours-note { max-width: 100%; }
     }
+    /* ============================================================
+       SVĚTLÉ SEKCE
+    ============================================================ */
+
+    /* Služby */
+    #sluzby { background: #FAF8F5; }
+    #sluzby .section-title { color: var(--text-dark); }
+    #sluzby .section-desc  { color: #7A6B60; }
+    #sluzby .btn-ghost {
+      color: var(--accent);
+      border-color: rgba(93,58,40,0.35);
+    }
+    #sluzby .btn-ghost:hover {
+      background: rgba(93,58,40,0.06);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .services-grid { background: rgba(180,155,130,0.12); }
+    .svc           { background: #FFFFFF; }
+    .svc:hover     { background: rgba(93,58,40,0.04); }
+    .svc-num       { color: rgba(93,58,40,0.09); }
+    .svc-name      { color: var(--text-dark); }
+    .svc-desc      { color: #7A6B60; }
+
+    /* O nás */
+    #onas { background: #FAF8F5; }
+    #onas .section-title          { color: var(--text-dark); }
+    #onas .about-card {
+      background: #ffffff;
+      border-color: rgba(93,58,40,0.12);
+    }
+    #onas .about-card-yr          { color: rgba(93,58,40,0.05); }
+    #onas .about-card blockquote  { color: var(--text-dark); }
+    #onas .about-card p           { color: #7A6B60; }
+    #onas .pillar-body h4         { color: var(--text-dark); }
+    #onas .pillar-body p          { color: #7A6B60; }
+
+    /* Galerie */
+    #galerie { background: #F2EDE6; }
+    #galerie .section-title { color: var(--text-dark); }
+    #galerie .section-desc  { color: #7A6B60; }
+
+    /* Kontakt */
+    #kontakt { background: #FAF8F5; }
+    #kontakt .section-title             { color: var(--text-dark); }
+    #kontakt .kontakt-grid > div > p    { color: #7A6B60; }
+    #kontakt .ci-val                    { color: var(--text-dark); }
+    #kontakt .ci-val a                  { color: var(--text-dark); }
+    #kontakt .ci-val a:hover            { color: var(--accent); }
+    #kontakt .ci-note                   { color: #7A6B60; }
+    #kontakt .ci-lbl                    { color: #9A8F87; }
+    #kontakt .ci-icon {
+      background: rgba(93,58,40,0.08);
+      border-color: rgba(93,58,40,0.20);
+    }
+    #kontakt .cform-title               { color: var(--text-dark); }
+    #kontakt .cform > p                 { color: #7A6B60; }
+    #kontakt .fg label                  { color: #7A6B60; }
+    #kontakt .fg input,
+    #kontakt .fg textarea {
+      background: #ffffff;
+      border-color: rgba(93,58,40,0.18);
+      color: var(--text-dark);
+    }
+    #kontakt .fg input::placeholder,
+    #kontakt .fg textarea::placeholder  { color: #AFA39A; }
+    #kontakt .fg input:focus,
+    #kontakt .fg textarea:focus         { border-color: var(--accent); }
+
   </style>
 </head>
 <body>
@@ -1067,7 +1137,7 @@
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
           </div>
           <div class="hic-label">Adresa</div>
-          <div class="hic-val">Protzkarova 33<br>686 01 Uherské Hradiště</div>
+          <div class="hic-val">Hradební 1250<br>686 01 Uherské Hradiště</div>
         </div>
         <div class="hic hic--accent">
           <div class="hic-icon">
@@ -1096,7 +1166,7 @@
     <div class="hero-strip">
       <div class="hi">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        <div><strong>Protzkarova 33</strong> <span>, 686 01 Uherské Hradiště</span></div>
+        <div><strong>Hradební 1250</strong> <span>, 686 01 Uherské Hradiště</span></div>
       </div>
       <div class="hi">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.13 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.07 1.2h3a2 2 0 0 1 2 1.72c.127.96.36 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.34 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
@@ -1193,8 +1263,8 @@
             <div class="pcat-hd-line"></div>
             <div class="pcat-title">Střihy</div>
           </div>
-          <div class="prow"><span class="prow-name">Stříhání vlasů</span><span class="prow-price">260 Kč</span></div>
-          <div class="prow"><span class="prow-name">Stříhání strojkem do 3 mm</span><span class="prow-price">240 Kč</span></div>
+          <div class="prow"><span class="prow-name">Stříhání vlasů</span><span class="prow-price">280 Kč</span></div>
+          <div class="prow"><span class="prow-name">Stříhání strojkem do 3 mm</span><span class="prow-price">250 Kč</span></div>
           <div class="prow"><span class="prow-name">Stříhání dohola (strojek + planžeta)</span><span class="prow-price">300 Kč</span></div>
           <div class="prow"><span class="prow-name">Stříhání předškolních dětí</span><span class="prow-price">240 Kč</span></div>
           <div class="prow"><span class="prow-name">Fade střih</span><span class="prow-price">350 Kč</span></div>
@@ -1219,7 +1289,7 @@
             <div class="pcat-title">Doplňkové</div>
           </div>
           <div class="prow"><span class="prow-name">Mytí vlasů</span><span class="prow-price">80 Kč</span></div>
-          <div class="prow"><span class="prow-name">Tvarování účesu vzduchem</span><span class="prow-price">100 Kč</span></div>
+          <div class="prow"><span class="prow-name">Tvarování účesu</span><span class="prow-price">100 Kč</span></div>
           <div class="prow"><span class="prow-name">Masáž hlavy, vlasová voda</span><span class="prow-price">100 Kč</span></div>
           <div class="prow"><span class="prow-name">Styling (gel, lak, pasta)</span><span class="prow-price">20 Kč</span></div>
         </div>
@@ -1386,12 +1456,8 @@
                 <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
               </div>
               <div>
-                <div class="ci-lbl">Aktuální adresa</div>
-                <div class="ci-val">Protzkarova 33, 686 01 Uherské Hradiště</div>
-                <div class="addr-alert">
-                  <div class="addr-alert-lbl">⚡ Stěhujeme se od 1. 6. 2026</div>
-                  <p>Nová adresa: Hradební 1250, 686 01 Uherské Hradiště</p>
-                </div>
+                <div class="ci-lbl">Adresa</div>
+                <div class="ci-val">Hradební 1250, 686 01 Uherské Hradiště</div>
               </div>
             </div>
 
@@ -1402,7 +1468,7 @@
               <div>
                 <div class="ci-lbl">Telefon</div>
                 <div class="ci-val"><a href="tel:+420775226449">+420 775 226 449</a></div>
-                <div class="ci-note">Pokud nedvoří — zanechte SMS</div>
+                <div class="ci-note">Pokud nezvedáme — zanechte SMS</div>
               </div>
             </div>
 
@@ -1459,8 +1525,8 @@
     <div class="footer-in">
       <div class="foot-logo">Pánské kadeřnictví <em>Adam</em></div>
       <div class="foot-copy">
-        &copy; 2025 Pánské kadeřnictví Adam &middot; Uherské Hradiště<br>
-        <small style="opacity:0.55;">Protzkarova 33 &middot; +420 775 226 449 &middot; info@kadernictviadam-uh.cz</small>
+        &copy; 2026 Pánské kadeřnictví Adam &middot; Uherské Hradiště<br>
+        <small style="opacity:0.55;">Hradební 1250 &middot; +420 775 226 449 &middot; info@kadernictviadam-uh.cz</small>
       </div>
       <div class="foot-links">
         <a href="#hero">Zpět nahoru &uarr;</a>
@@ -1523,40 +1589,6 @@
       if (e.key === 'ArrowRight') lbMove(1);
     });
 
-    /* ---- Watermark ---- */
-    (function() {
-      const text = 'Demoverze - Tomáš Smolík';
-      const wm = document.createElement('div');
-      wm.style.cssText = [
-        'position:fixed','inset:0','z-index:9999',
-        'pointer-events:none','overflow:hidden',
-        'opacity:0.13'
-      ].join(';');
-
-      const cols = 5, rows = 8;
-      const cw = 100 / cols, rh = 100 / rows;
-      for (let r = 0; r < rows; r++) {
-        for (let c = 0; c < cols; c++) {
-          const el = document.createElement('span');
-          el.textContent = text;
-          el.style.cssText = [
-            'position:absolute',
-            'font-family:Work Sans,sans-serif',
-            'font-size:11px',
-            'font-weight:600',
-            'letter-spacing:0.06em',
-            'white-space:nowrap',
-            'color:#c8a97e',
-            'transform:rotate(-25deg)',
-            'transform-origin:center',
-            `left:${c * cw + cw * 0.1}%`,
-            `top:${r * rh + rh * 0.2}%`,
-          ].join(';');
-          wm.appendChild(el);
-        }
-      }
-      document.body.appendChild(wm);
-    })();
 
     /* ---- Simple form feedback ---- */
     function handleForm(btn) {
