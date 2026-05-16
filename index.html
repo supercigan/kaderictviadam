@@ -1099,7 +1099,7 @@
       <li><a href="#kontakt" class="nav-cta">Kontakt</a></li>
     </ul>
 
-    <div class="nav-ham" onclick="openMobNav()" aria-label="Otevřít menu" role="button" tabindex="0">
+    <div class="nav-ham" onclick="toggleMobNav()" aria-label="Otevřít/zavřít menu" role="button" tabindex="0">
       <span></span><span></span><span></span>
     </div>
   </nav>
@@ -1560,8 +1560,9 @@
 
 
     /* ---- Mobile nav ---- */
-    function openMobNav()  { document.getElementById('mob-nav').classList.add('open');    document.body.style.overflow = 'hidden'; }
-    function closeMobNav() { document.getElementById('mob-nav').classList.remove('open'); document.body.style.overflow = ''; }
+    function openMobNav()   { document.getElementById('mob-nav').classList.add('open');    document.body.style.overflow = 'hidden'; }
+    function closeMobNav()  { document.getElementById('mob-nav').classList.remove('open'); document.body.style.overflow = ''; }
+    function toggleMobNav() { document.getElementById('mob-nav').classList.contains('open') ? closeMobNav() : openMobNav(); }
 
     /* ---- Gallery lightbox ---- */
     let lbItems = [], lbIndex = 0;
