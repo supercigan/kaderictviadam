@@ -1490,7 +1490,7 @@
 
         <!-- Form -->
         <div>
-          <div class="cform fi">
+          <form class="cform fi" action="https://formspree.io/f/mvzldbdz" method="POST" onsubmit="handleForm(event, this)">
             <div class="cform-title">Napište nám</div>
             <p style="font-size:0.85rem; color:var(--text-dim); margin-bottom:0.5rem; line-height:1.6;">
               Máte dotaz na střih nebo potřebujete více informací? Rádi odpovíme.
@@ -1498,26 +1498,26 @@
             <div class="frow">
               <div class="fg">
                 <label for="fname">Jméno</label>
-                <input id="fname" type="text" placeholder="Vaše jméno" autocomplete="name">
+                <input id="fname" name="jmeno" type="text" placeholder="Vaše jméno" autocomplete="name">
               </div>
               <div class="fg">
                 <label for="fphone">Telefon</label>
-                <input id="fphone" type="tel" placeholder="+420 xxx xxx xxx" autocomplete="tel">
+                <input id="fphone" name="telefon" type="tel" placeholder="+420 xxx xxx xxx" autocomplete="tel">
               </div>
             </div>
             <div class="fg">
               <label for="femail">Email</label>
-              <input id="femail" type="email" placeholder="vas@email.cz" autocomplete="email">
+              <input id="femail" name="email" type="email" placeholder="vas@email.cz" autocomplete="email">
             </div>
             <div class="fg">
               <label for="fmsg">Zpráva</label>
-              <textarea id="fmsg" rows="4" placeholder="Vaše zpráva…"></textarea>
+              <textarea id="fmsg" name="zprava" rows="4" placeholder="Vaše zpráva…"></textarea>
             </div>
-            <button type="button" class="btn btn-primary" style="align-self:flex-start;" onclick="handleForm(this)">
+            <button type="submit" class="btn btn-primary" style="align-self:flex-start;">
               Odeslat zprávu
               <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </button>
-          </div>
+          </form>
         </div>
 
       </div>
@@ -1596,24 +1596,44 @@
 
 
     /* ---- Simple form feedback ---- */
-    function handleForm(btn) {
-      const form = btn.closest('.cform');
+    function handleForm(e, form) {
+      e.preventDefault();
       const name = form.querySelector('#fname').value.trim();
       if (!name) { form.querySelector('#fname').focus(); return; }
 
-      form.innerHTML = `
-        <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.25rem;padding:2.5rem 1rem;text-align:center;min-height:260px;">
-          <svg width="56" height="56" viewBox="0 0 56 56" fill="none" aria-hidden="true">
-            <circle cx="28" cy="28" r="28" fill="#2d7a4f" opacity="0.12"/>
-            <circle cx="28" cy="28" r="20" fill="#2d7a4f"/>
-            <polyline points="19,28 25,34 37,22" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <div>
-            <div style="font-size:1.2rem;font-weight:700;color:var(--text-dark);margin-bottom:0.4rem;">Zpráva odeslána</div>
-            <div style="font-size:0.9rem;color:#7A6B60;line-height:1.6;">Děkujeme, ozveme se vám co nejdříve.</div>
-          </div>
-        </div>
-      `;
+      const btn = form.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      btn.textContent = 'Odesílám…';
+
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(res => {
+        if (res.ok) {
+          form.innerHTML = `
+            <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.25rem;padding:2.5rem 1rem;text-align:center;min-height:260px;">
+              <svg width="56" height="56" viewBox="0 0 56 56" fill="none" aria-hidden="true">
+                <circle cx="28" cy="28" r="28" fill="#2d7a4f" opacity="0.12"/>
+                <circle cx="28" cy="28" r="20" fill="#2d7a4f"/>
+                <polyline points="19,28 25,34 37,22" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <div>
+                <div style="font-size:1.2rem;font-weight:700;color:var(--text-dark);margin-bottom:0.4rem;">Zpráva odeslána</div>
+                <div style="font-size:0.9rem;color:#7A6B60;line-height:1.6;">Děkujeme, ozveme se vám co nejdříve.</div>
+              </div>
+            </div>
+          `;
+        } else {
+          btn.disabled = false;
+          btn.innerHTML = 'Odeslat zprávu <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
+          alert('Nepodařilo se odeslat zprávu. Zkuste to prosím znovu.');
+        }
+      }).catch(() => {
+        btn.disabled = false;
+        btn.innerHTML = 'Odeslat zprávu <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
+        alert('Chyba připojení. Zkuste to prosím znovu.');
+      });
     }
   </script>
 </body>
