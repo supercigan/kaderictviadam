@@ -1600,9 +1600,20 @@
       const form = btn.closest('.cform');
       const name = form.querySelector('#fname').value.trim();
       if (!name) { form.querySelector('#fname').focus(); return; }
-      btn.textContent = '✓ Odesláno';
-      btn.style.background = '#2d7a4f';
-      btn.disabled = true;
+
+      form.innerHTML = `
+        <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.25rem;padding:2.5rem 1rem;text-align:center;min-height:260px;">
+          <svg width="56" height="56" viewBox="0 0 56 56" fill="none" aria-hidden="true">
+            <circle cx="28" cy="28" r="28" fill="#2d7a4f" opacity="0.12"/>
+            <circle cx="28" cy="28" r="20" fill="#2d7a4f"/>
+            <polyline points="19,28 25,34 37,22" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div>
+            <div style="font-size:1.2rem;font-weight:700;color:var(--text-dark);margin-bottom:0.4rem;">Zpráva odeslána</div>
+            <div style="font-size:0.9rem;color:#7A6B60;line-height:1.6;">Děkujeme, ozveme se vám co nejdříve.</div>
+          </div>
+        </div>
+      `;
     }
   </script>
 </body>
