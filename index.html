@@ -1667,10 +1667,11 @@
       border-radius: 6px;
       max-width: 440px;
       width: 100%;
-      padding: 2.5rem 2rem 2rem;
+      padding: 0;
       position: relative;
       box-shadow: 0 20px 60px rgba(25, 18, 14, 0.35);
       animation: popSlideUp 0.35s ease;
+      overflow: hidden;
     }
     @keyframes popSlideUp {
       from { opacity: 0; transform: translateY(18px); }
@@ -1696,54 +1697,10 @@
       color: var(--text-dark);
       background: var(--tan-light);
     }
-    #popup-icon {
-      width: 48px;
-      height: 48px;
-      background: var(--tan-light);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1.25rem;
-    }
-    #popup-label {
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.5rem;
-    }
-    #popup-title {
-      font-family: 'Abril Fatface', serif;
-      font-size: 1.6rem;
-      line-height: 1.15;
-      color: var(--text-dark);
-      margin-bottom: 0.85rem;
-    }
-    #popup-text {
-      font-size: 0.92rem;
-      line-height: 1.7;
-      color: #6B5F58;
-      margin-bottom: 1.5rem;
-    }
-    #popup-btn {
-      display: inline-block;
-      font-family: 'Work Sans', sans-serif;
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      background: var(--accent);
-      color: #fff;
-      border: none;
-      border-radius: 3px;
-      padding: 0.75rem 1.5rem;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    #popup-btn:hover {
-      background: var(--accent-hov);
+    #popup-img {
+      display: block;
+      width: 100%;
+      height: auto;
     }
   </style>
 
@@ -1754,19 +1711,7 @@
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
 
-      <div id="popup-icon">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
-        </svg>
-      </div>
-
-      <div id="popup-label">Provozní info</div>
-      <div id="popup-title">Vážení zákazníci</div>
-      <p id="popup-text">
-        Od 1. 8. 2026 došlo ke změně otevírací doby. V týdnu máme otevřeno do <strong>16:30 hod</strong>.<br><br>
-        Těšíme se na Vás.
-      </p>
-      <button id="popup-btn">Rozumím</button>
+      <img id="popup-img" src="popupslavnosti.png" alt="Slovácké slavnosti vína – sobota 12. září 2026 zavřeno" />
     </div>
   </div>
 
@@ -1783,7 +1728,6 @@
       }
 
       document.getElementById('popup-close').addEventListener('click', closePopup);
-      document.getElementById('popup-btn').addEventListener('click', closePopup);
       overlay.addEventListener('click', function (e) {
         if (e.target === overlay) closePopup();
       });
