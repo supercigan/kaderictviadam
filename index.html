@@ -1720,7 +1720,8 @@
 
   <script>
     (function () {
-      const POPUP_ACTIVE = true; // ← false = popup se nezobrazí
+      const POPUP_EXPIRES = new Date('2026-09-12T23:59:59');
+      const POPUP_ACTIVE = new Date() <= POPUP_EXPIRES;
 
       const overlay = document.getElementById('popup-overlay');
       if (!POPUP_ACTIVE) { overlay.classList.add('hidden'); return; }
